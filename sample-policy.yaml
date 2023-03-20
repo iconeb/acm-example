@@ -1,7 +1,7 @@
 apiVersion: v1
 kind: Namespace
 metadata:
-  name: appuio-acm-sample-policy
+  name: acm-sample-policy
 ---
 apiVersion: policy.open-cluster-management.io/v1
 kind: Policy
@@ -10,8 +10,8 @@ metadata:
     policy.open-cluster-management.io/categories: PR.IP Information Protection Processes and Procedures
     policy.open-cluster-management.io/controls: PR.IP-1 Baseline Configuration
     policy.open-cluster-management.io/standards: NIST-CSF
-  name: appuio-acm-sample-policy
-  namespace: appuio-acm-sample-policy
+  name: acm-sample-policy
+  namespace: acm-sample-policy
 spec:
   disabled: false
   remediationAction: enforce
@@ -20,20 +20,20 @@ spec:
       apiVersion: policy.open-cluster-management.io/v1
       kind: ConfigurationPolicy
       metadata:
-        name: appuio-acm-sample-policy-limitrange
+        name: acm-sample-policy-limitrange
       spec:
         namespaceSelector:
           exclude:
           - kube-*
           include:
-          - appuio-*
+          - acm-*
         object-templates:
         - complianceType: musthave
           objectDefinition:
             apiVersion: v1
             kind: LimitRange
             metadata:
-              name: appuio-acm-sample-limitrange
+              name: acm-sample-limitrange
             spec:
               limits:
               - default:
@@ -47,7 +47,7 @@ spec:
       apiVersion: policy.open-cluster-management.io/v1
       kind: ConfigurationPolicy
       metadata:
-        name: appuio-acm-sample-policy-namespace
+        name: acm-sample-policy-namespace
       spec:
         namespaceSelector:
           exclude:
@@ -60,21 +60,21 @@ spec:
             apiVersion: v1
             kind: Namespace
             metadata:
-              name: appuio-acm-policy-namespace
+              name: acm-policy-namespace
         remediationAction: inform
         severity: low
 ---
 apiVersion: policy.open-cluster-management.io/v1
 kind: PlacementBinding
 metadata:
-  name: binding-appuio-acm-sample-policy
-  namespace: appuio-acm-sample-policy
+  name: binding-acm-sample-policy
+  namespace: acm-sample-policy
 placementRef:
   name: k8s-staging
   kind: PlacementRule
   apiGroup: apps.open-cluster-management.io
 subjects:
-- name: appuio-acm-sample-policy
+- name: acm-sample-policy
   kind: Policy
   apiGroup: policy.open-cluster-management.io
 ---
@@ -82,7 +82,7 @@ apiVersion: apps.open-cluster-management.io/v1
 kind: PlacementRule
 metadata:
   name: k8s-staging
-  namespace: appuio-acm-sample-policy
+  namespace: acm-sample-policy
 spec:
   clusterConditions:
   - status: "True"

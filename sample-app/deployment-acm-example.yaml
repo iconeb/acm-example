@@ -2,17 +2,17 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   labels:
-    app: appuio-acm-example
-  name: appuio-acm-example
+    app: acm-example
+  name: acm-example
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: appuio-acm-example
+      app: acm-example
   template:
     metadata:
       labels:
-        app: appuio-acm-example
+        app: acm-example
     spec:
       containers:
       - name: example-php-docker-helloworld
