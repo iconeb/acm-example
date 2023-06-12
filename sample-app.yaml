@@ -56,4 +56,4 @@ metadata:
 spec:
   clusterSelector:
     matchLabels:
-      'stage': 'prod'
+      'name': 'ocp-rhosp-totp'
